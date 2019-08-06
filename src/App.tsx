@@ -1,27 +1,28 @@
 import * as React from 'react';
-import ReactPlayer from 'react-player';
-import CaptionArea from 'src/Components/CaptionArea';
+import CharacterArea from 'src/Components/CharacterArea';
 import Header from 'src/Components/Header';
-import VideoList from 'src/Components/VideoList';
+import GameList from 'src/Components/GameList';
 import 'src/App.css'
 
 interface IState {
-    playingUrl:any,
-    updateVideoList:any,
+    gameList:object,
+    gameName: string,
+    updateGameList:any
 }
 
 class App extends React.Component<{}, IState>{
   public constructor(props: any) {
     super(props);
     this.state = {
-      playingUrl:"",
-      updateVideoList:null,
+      gameList:[],
+      gameName:"",
+      updateGameList:null,
     }
   }
 
-  public addVideo = (url:any) =>{
-    const body = {"url":url}
-    fetch("https://scriberapi.azurewebsites.net/api/Videos",{
+  public addGame = (name: string) =>{
+    const body = {"name":name}
+    fetch("https://msapoggamesapidevops.azurewebsites.net/api/Games",{
       body:JSON.stringify(body),
       headers:{
         Accept:"text/plain",
@@ -29,50 +30,33 @@ class App extends React.Component<{}, IState>{
       },
       method:"POST"
     }).then(()=>{
-      this.state.updateVideoList()
+      this.state.updateGameList()
     })
   }
 
-  public updateURL = (url:string) => {
-    if(this.state.playingUrl === url){
-      this.setState({playingUrl:""},()=>this.setState({playingUrl:url}))
+  public updateName = (name:string) => {
+    if(this.state.gameName === name){
+      this.setState({gameName:""},()=>this.setState({gameName:name}))
     }else{
-      this.setState({playingUrl:url})
+      this.setState({gameName:name})
     }
   }
 
-  public videoList = (callback:any) => {
-    this.setState({updateVideoList:callback})
+  public gameList = (callback:any) => {
+    this.setState({updateGameList:callback})
   }
 
 
   public render() {
     return (<div>
-      <Header addVideo={this.addVideo} />
+      <Header addGame={this.addGame} />
       <div className="container">
         <div className="row">
-          <div className="col-7">
-            <ReactPlayer
-              className="player"
-              controls={true}
-              url={this.state.playingUrl}
-              width="100%"
-              height="400px"
-              playing={true}
-              config={{
-                youtube: {
-                  playerVars: { showinfo: 1 },
-                  preload: true
-                }
-              }
-              }
-            />
-          </div>
           <div className="col-5">
-            <VideoList play = {this.updateURL} mount={this.videoList}/>
+            <GameList play = {this.updateName} mount={this.gameList}/>
           </div>
         </div>
-        <CaptionArea play={this.updateURL} currentVideo={this.state.playingUrl}/>
+        <CharacterArea currentGame={this.state.gameName} play={this.updateName}/>
       </div>
     </div>)
   }

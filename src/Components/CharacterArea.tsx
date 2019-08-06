@@ -11,11 +11,11 @@ interface IState {
 }
 
 interface IProps {
-    currentVideo:any,
+    currentGame:any,
     play: any
 }
 
-export default class CaptionArea extends React.Component<IProps, IState>{
+export default class CharacterArea extends React.Component<IProps, IState>{
     public constructor(props: any) {
         super(props);
         this.state = {
@@ -26,10 +26,11 @@ export default class CaptionArea extends React.Component<IProps, IState>{
     }
 
     public search = () => {
+        // Check if its empty
         if(this.state.input.trim() === ""){
             this.setState({result:[]},()=>this.makeTableBody())
         }else{
-            fetch("https://scriberapi.azurewebsites.net/api/Videos/SearchByTranscriptions/"+this.state.input,{
+            fetch("https://msapoggamesapidevops.azurewebsites.net/api/Games/SearchByCharacters/"+this.state.input,{
                 headers:{
                     Accept:"text/plain"
                 },
@@ -45,23 +46,23 @@ export default class CaptionArea extends React.Component<IProps, IState>{
     public makeTableBody = () =>{
         const toRet: any[] = []
         this.state.result.sort((a:any,b:any)=>{
-            if(a.webUrl === b.webUrl){
+            if(a.gameName === b.gameName){
                 return 0;
-            }else if(a.webUrl === this.props.currentVideo){
+            }else if(a.gameName === this.props.currentGame){
                 return -1;
-            }else if(b.webUrl === this.props.currentVideo){
+            }else if(b.gameName === this.props.currentGame){
                 return 1;
             }else{
-                return a.videoTitle.localeCompare(b.videoTitle);
+                return a.gameName.localeCompare(b.gameName);
             }
         })
-        this.state.result.forEach((video:any) => {
-            video.transcription.forEach((caption:any) => {
+        this.state.result.forEach((game:any) => {
+            game.character.forEach((character:any) => {
                 toRet.push(
-                    <tr onClick={()=>this.handleClick(video.webUrl,caption.startTime)}>
-                        <td>{caption.startTime}</td>
-                        <td>{caption.phrase}</td>
-                        <td>{video.videoTitle}</td>
+                    <tr>
+                        <td><img src={character.charImageUrl} width="15px"/></td>
+                        <td><b>character.charName</b> </td>
+                        <td>{game.gameName}</td>
                     </tr>
                 )
             });
@@ -77,11 +78,6 @@ export default class CaptionArea extends React.Component<IProps, IState>{
         }else{
             this.setState({body:toRet})
         }
-    }
-
-    public handleClick = (url:any,time:any) =>{
-        window.scrollTo(0,0)
-        this.props.play(url+"&t="+time+"s")
     }
 
 
@@ -117,11 +113,11 @@ export default class CaptionArea extends React.Component<IProps, IState>{
                 <br/>
                 <table className="table">
                     <tr>
-                        <th>Time</th>
-                        <th>Caption</th>
-                        <th>Video</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Game</th>
                     </tr>
-                    <tbody className="captionTable">
+                    <tbody className="characterTable">
                             {this.state.body}
                     </tbody>
                 </table>

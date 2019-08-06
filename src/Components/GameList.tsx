@@ -4,7 +4,7 @@ import StarBorder from '@material-ui/icons/StarBorder'
 import * as React from 'react'
 
 interface IState{
-    videoList:any
+    gameList:any
 }
 
 interface IProps{
@@ -12,59 +12,60 @@ interface IProps{
     mount:any,
 }
 
-export default class VideoList extends React.Component<IProps,IState>{
+export default class GameList extends React.Component<IProps,IState>{
     public constructor(props:any){
         super(props);
         this.state = {
-            videoList: [],
+            gameList: [],
         }
         this.updateList();
     }
 
     public componentDidMount = () =>{
         this.props.mount(this.updateList)
+        this.updateList();
     }
 
     public updateList = () => {
-        fetch('https://scriberapi.azurewebsites.net/api/Videos',{
+        fetch('https://msapoggamesapidevops.azurewebsites.net/api/Games',{
             method:'GET'
         }).then((response:any) => {
             return response.json();
         }).then((response:any)=>{
             const output:any[] = []
-            response.forEach((video:any) => {
+            response.forEach((game:any) => {
                 const row = (<tr>
-                    <td className="align-middle" onClick={() => this.handleLike(video)}>{video.isFavourite === true?<Star/>:<StarBorder/>}</td>
-                    <td className="align-middle" onClick={() => this.props.play(video.webUrl)}><img src={video.thumbnailUrl} width="100px"/></td>
-                    <td className="align-middle" onClick={() => this.props.play(video.webUrl)}>{video.videoTitle}</td>
-                    <td className="align-middle" onClick={() => this.deleteVideo(video.videoId)}><Close/></td>                    
+                    <td className="align-middle" onClick={() => this.handleLike(game)}>{game.isFavourite === true?<Star/>:<StarBorder/>}</td>
+                    <td className="align-middle"><img src={game.coverImageUrl} width="70px"/></td>
+                    <td className="align-middle"><b>game.gameName</b></td>
+                    <td className="align-middle" onClick={() => this.deleteGame(game.gameId)}><Close/></td>                    
                     </tr>)
-                if(video.isFavourite){
+                if(game.isFavourite){
                     output.unshift(row);
                 }else{
                     output.push(row);
                 }
             })
-            this.setState({videoList:output})
+            this.setState({gameList:output})
             });
     }
 
-    public deleteVideo = (id:any) => {
-        fetch("https://scriberapi.azurewebsites.net/api/Videos/"+id,{
+    public deleteGame = (id:any) => {
+        fetch("https://msapoggamesapidevops.azurewebsites.net/api/Games/"+id,{
             method:"DELETE"
         }).then(()=>{
             this.updateList()
         })
     }
 
-    public handleLike = (video:any) =>{
+    public handleLike = (game:any) =>{
         const toSend = [{
             "from":"",
             "op":"replace",
             "path":"/isFavourite",
-            "value":!video.isFavourite,
+            "value":!game.isFavourite,
         }]
-        fetch("https://scriberapi.azurewebsites.net/api/Videos/update/"+video.videoId,{
+        fetch("https://msapoggamesapidevops.azurewebsites.net/api/Games/update/"+game.gameId,{
             body:JSON.stringify(toSend),
             headers: {
                 Accept: "text/plain",
@@ -76,10 +77,10 @@ export default class VideoList extends React.Component<IProps,IState>{
 
     public render() {
         return (
-            <div className="video-list">
-            <h1 className="play-heading"><span className="red-heading">play</span>video</h1>
+            <div className="game-list">
+            <h1 className="play-heading"><span className="red-heading">name</span>game</h1>
             <table className="table">
-                {this.state.videoList}
+                {this.state.gameList}
             </table>
             </div>
         )
