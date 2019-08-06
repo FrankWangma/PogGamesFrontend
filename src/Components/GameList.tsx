@@ -77,7 +77,7 @@ export default class GameList extends React.Component<IProps,IState>{
 
     public render() {
         return (
-            <div className="game-list">
+            <div className="video-list">
             <h1 className="play-heading"><span className="red-heading">name</span>game</h1>
             <table className="table">
                 {this.state.gameList}
