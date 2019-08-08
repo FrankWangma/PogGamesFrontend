@@ -4,12 +4,12 @@ import pogchampgrey from '../Images/pogchampgrey.png'
 import * as React from 'react'
 
 interface IState{
-    gameList:any
+    gameList:any,
+    isShowing: boolean
 }
 
 interface IProps{
-    play:any,
-    mount:any,
+    mount:any
 }
 
 export default class GameList extends React.Component<IProps,IState>{
@@ -17,6 +17,7 @@ export default class GameList extends React.Component<IProps,IState>{
         super(props);
         this.state = {
             gameList: [],
+            isShowing: false
         }
         this.updateList();
     }
@@ -75,10 +76,16 @@ export default class GameList extends React.Component<IProps,IState>{
         }).then(()=>{this.updateList()})
     }
 
+    public displayList = () => {
+        this.setState({
+            isShowing: !this.state.isShowing
+        })
+    }
+
     public render() {
         return (
-            <div className="video-list">
-            <h1 className="play-heading"><span className="red-heading">Games</span> List</h1>
+            <div className="game-list">
+            <h1 className="gameList-heading"><span className="pink-heading">Games</span> List</h1>
             <table className="table">
                     <tr>
                         <th>Favourite</th>

@@ -6,13 +6,14 @@ import * as React from 'react'
 
 interface IState {
     input: string,
+    isShowing: boolean,
     result: any,
     body:any,
+    
 }
 
 interface IProps {
     currentGame:any,
-    play: any
 }
 
 export default class CharacterArea extends React.Component<IProps, IState>{
@@ -21,7 +22,9 @@ export default class CharacterArea extends React.Component<IProps, IState>{
         this.state = {
             body:[],
             input:"",
+            isShowing: false,
             result:[],
+            
         }
     }
 
@@ -84,18 +87,18 @@ export default class CharacterArea extends React.Component<IProps, IState>{
 
     public render() {
         return (
-            <div className="caption-area">
-                <div className="caption-area">
+            <div className="character-area-container">
+                <div className="character-area">
                 <div className="row">
                     <div className="col-2 justify-content-center align-self-center">
-                        <h1><span className="red-heading">Search </span>Characters</h1>
+                        <h1><span className="pink-heading">Search </span>Characters</h1>
                     </div>
                     <div className="col-10">
                         
                         <TextField
                             id="Search-Bar"
                             className="SearchBar"
-                            placeholder="Search Captions"
+                            placeholder="Search Characters"
                             margin="normal"
                             variant="outlined"
                             onChange={(event: any) => this.setState({ input: event.target.value })}
