@@ -7,7 +7,10 @@ import 'src/App.css'
 interface IState {
     gameList:object,
     gameName: string,
-    updateGameList:any
+    isCharShowing: boolean,
+    isGameShowing: boolean,
+    updateGameList:any,
+    
 }
 
 class App extends React.Component<{}, IState>{
@@ -16,7 +19,10 @@ class App extends React.Component<{}, IState>{
     this.state = {
       gameList:[],
       gameName:"",
+      isCharShowing: false,
+      isGameShowing: true,
       updateGameList:null,
+      
     }
   }
 
@@ -38,14 +44,36 @@ class App extends React.Component<{}, IState>{
     this.setState({updateGameList:callback})
   }
 
+  public displayGame = () => {
+    this.setState({
+        isCharShowing: false,
+        isGameShowing: true,
+        
+    })
+  }
+
+  public displayChar = () => {
+    this.setState({
+        isCharShowing: true,
+        isGameShowing: false
+    })
+  }
+
 
   public render() {
     return (<div>
       <Header addGame={this.addGame} />
+      <div className="buttonArea">
+        <div className="buttonContainer">
+          <button className="appButton" onClick={() => this.displayGame()}><b>Game List</b></button>
+          <button className="appButton" onClick={() => this.displayChar()}><b>Character</b></button>
+        </div>
+      </div>
       <div className="container">
-        <GameList mount={this.gameList}/>
-
-        <CharacterArea currentGame={this.state.gameName}/>
+          {this.state.isGameShowing ? <GameList mount={this.gameList}/> : null}     
+        <div>
+          {this.state.isCharShowing ? <CharacterArea currentGame={this.state.gameName}/> : null}
+        </div>
       </div>
     </div>)
   }

@@ -10,8 +10,12 @@ body {
 .header {
   background-color: #1F1B24;
   padding-top: 10px;
-  padding-bottom: 1%;
-  margin-bottom: 20px;
+  padding-bottom: 0;
+}
+
+.gameSearchBar {
+  margin-top: 0px;
+  width: 80%;
 }
 
 h1 {
@@ -60,7 +64,7 @@ p {
   background-color: #383838; ;
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 400px;
+  height: 50%;
 }
 
 .game-list button {
@@ -86,10 +90,25 @@ p {
   cursor: pointer;
 }
 
-.headerButtonsContainer {
-  margin-left: 1%;
+.buttonArea {
+  background-color: #1F1B24;
+  padding-top: 0;
+  margin-bottom: 20px;
 }
 
-.headerButton {
+.appButton {
   margin-right: 20px;
+  width: 100px;
+  border-color: #BB86FC;
+  background-color: #1F1B24;
+  color: #BB86FC;
+}
+
+.buttonContainer {
+  padding-left: 10%;
+  padding-bottom: 10px;
+}
+
+td {
+  font-size: 15px;
 }
