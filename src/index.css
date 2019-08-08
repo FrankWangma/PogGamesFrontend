@@ -4,11 +4,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
+  background: #332940;
 }
 
 .header {
-  background-color: #F8F8F8;
+  background-color: #1F1B24;
   padding-top: 10px;
+  padding-bottom: 1%;
   margin-bottom: 20px;
 }
 
@@ -19,53 +21,75 @@ h1 {
   float: left;
 }
 
-.red-heading {
-  color: #C1263A;
+th {
+  font-size: 20px;
 }
 
-.play-heading {
+.pink-heading {
+  color: #BB86FC;
+}
+
+.gameList-heading {
   margin-left: 20px;
   margin-top: 10px;
 }
 
+p {
+  font-size: 25px;
+}
+
 .table {
   font-size: 12px;
+  color: #BB86FC;
+  background-color:#383838; 
+  text-align: center;
 }
 
-.table td, .table th {
+.table td{
   padding: 7px;
+  color: #C71585;
+  
 }
 
-.video-list {
-  background-color: #F5F5F5;
+.table th {
+  padding: 7px;
+  
+} 
+
+.game-list {
+  background-color: #383838; ;
   overflow-x: hidden;
   overflow-y: scroll;
   height: 400px;
 }
 
-.video-list button {
+.game-list button {
   border: none;
   background-color: #F5F5F5;
 }
 
-.video-list > .table {
+.game-list > .table {
   cursor: pointer;
 }
 
-.video-list-close {
+.game-list-close {
   width: 60px;
 }
 
-.caption-area {
-  background-color: #F5F5F5;
+.character-area {
+  background-color: #383838; ;
   margin-top: 20px;
   padding: 30px;
 }
 
-.captionTable {
+.characterTable {
   cursor: pointer;
 }
 
-.player {
-  background-color: black;
+.headerButtonsContainer {
+  margin-left: 1%;
+}
+
+.headerButton {
+  margin-right: 20px;
 }

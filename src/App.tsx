@@ -34,14 +34,6 @@ class App extends React.Component<{}, IState>{
     })
   }
 
-  public updateName = (name:string) => {
-    if(this.state.gameName === name){
-      this.setState({gameName:""},()=>this.setState({gameName:name}))
-    }else{
-      this.setState({gameName:name})
-    }
-  }
-
   public gameList = (callback:any) => {
     this.setState({updateGameList:callback})
   }
@@ -51,9 +43,9 @@ class App extends React.Component<{}, IState>{
     return (<div>
       <Header addGame={this.addGame} />
       <div className="container">
-        <GameList play = {this.updateName} mount={this.gameList}/>
+        <GameList mount={this.gameList}/>
 
-        <CharacterArea currentGame={this.state.gameName} play={this.updateName}/>
+        <CharacterArea currentGame={this.state.gameName}/>
       </div>
     </div>)
   }

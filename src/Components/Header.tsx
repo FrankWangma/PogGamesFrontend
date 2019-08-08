@@ -30,9 +30,9 @@ export default class Header extends React.Component<IProps,IState> {
                 <div className="container">
                     <div className="row">
                         <div className="col-2 justify-content-center align-self-center">
-                            <h1><span className="red-heading">PoG</span>Games</h1>
+                            <h1><span className="pink-heading">PoG</span>Games</h1>
                         </div>
-                        <div className="col-10">
+                        <div className="col-12">
                             <TextField
                             id= "Search-Bar"
                             className = "SearchBar"
@@ -49,6 +49,10 @@ export default class Header extends React.Component<IProps,IState> {
                                 </InputAdornment>,
                             }}
                             />
+                        </div>
+                        <div className="headerButtonsContainer">
+                            <button className="headerButton">Games</button>
+                            <button className="headerButton">Characters</button>
                         </div>
                     </div>
                 </div>
