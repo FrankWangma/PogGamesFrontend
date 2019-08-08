@@ -21,7 +21,7 @@ class App extends React.Component<{}, IState>{
   }
 
   public addGame = (name: string) =>{
-    const body = {"name":name}
+    const body = {"gameName":name}
     fetch("https://msapoggamesapidevops.azurewebsites.net/api/Games",{
       body:JSON.stringify(body),
       headers:{
@@ -51,11 +51,8 @@ class App extends React.Component<{}, IState>{
     return (<div>
       <Header addGame={this.addGame} />
       <div className="container">
-        <div className="row">
-          <div className="col-5">
-            <GameList play = {this.updateName} mount={this.gameList}/>
-          </div>
-        </div>
+        <GameList play = {this.updateName} mount={this.gameList}/>
+
         <CharacterArea currentGame={this.state.gameName} play={this.updateName}/>
       </div>
     </div>)

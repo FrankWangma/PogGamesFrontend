@@ -60,8 +60,8 @@ export default class CharacterArea extends React.Component<IProps, IState>{
             game.character.forEach((character:any) => {
                 toRet.push(
                     <tr>
-                        <td><img src={character.charImageUrl} width="15px"/></td>
-                        <td><b>character.charName</b> </td>
+                        <td><img src={character.charImageUrl} width="50px"/></td>
+                        <td><b>{character.charName}</b> </td>
                         <td>{game.gameName}</td>
                     </tr>
                 )
@@ -88,7 +88,7 @@ export default class CharacterArea extends React.Component<IProps, IState>{
                 <div className="caption-area">
                 <div className="row">
                     <div className="col-2 justify-content-center align-self-center">
-                        <h1><span className="red-heading">search</span>caption</h1>
+                        <h1><span className="red-heading">Search </span>Characters</h1>
                     </div>
                     <div className="col-10">
                         

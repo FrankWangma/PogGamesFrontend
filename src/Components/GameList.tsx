@@ -1,6 +1,6 @@
 import Close from '@material-ui/icons/Close'
-import Star from '@material-ui/icons/Star'
-import StarBorder from '@material-ui/icons/StarBorder'
+import pogchamp from '../Images/pogchamp.png'
+import pogchampgrey from '../Images/pogchampgrey.png'
 import * as React from 'react'
 
 interface IState{
@@ -35,9 +35,9 @@ export default class GameList extends React.Component<IProps,IState>{
             const output:any[] = []
             response.forEach((game:any) => {
                 const row = (<tr>
-                    <td className="align-middle" onClick={() => this.handleLike(game)}>{game.isFavourite === true?<Star/>:<StarBorder/>}</td>
+                    <td className="align-middle" onClick={() => this.handleLike(game)}>{game.isFavourite === true?<img src={pogchamp} width="50px"/>:<img src={pogchampgrey} width="50px"/>}</td>
                     <td className="align-middle"><img src={game.coverImageUrl} width="70px"/></td>
-                    <td className="align-middle"><b>game.gameName</b></td>
+                    <td className="align-middle"><b>{game.gameName}</b></td>
                     <td className="align-middle" onClick={() => this.deleteGame(game.gameId)}><Close/></td>                    
                     </tr>)
                 if(game.isFavourite){
@@ -78,10 +78,18 @@ export default class GameList extends React.Component<IProps,IState>{
     public render() {
         return (
             <div className="video-list">
-            <h1 className="play-heading"><span className="red-heading">name</span>game</h1>
+            <h1 className="play-heading"><span className="red-heading">Games</span> List</h1>
             <table className="table">
-                {this.state.gameList}
-            </table>
+                    <tr>
+                        <th>Favourite</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tbody className="characterTable">
+                            {this.state.gameList}
+                    </tbody>
+                </table>
             </div>
         )
     }
