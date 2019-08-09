@@ -9,7 +9,7 @@ interface IState {
     isShowing: boolean,
     result: any,
     body:any,
-    
+    characters: any
 }
 
 interface IProps {
@@ -21,8 +21,9 @@ export default class CharacterArea extends React.Component<IProps, IState>{
         super(props);
         this.state = {
             body:[],
+            characters: [],
             input:"",
-            isShowing: false,
+            isShowing: true,
             result:[],
             
         }
@@ -41,10 +42,40 @@ export default class CharacterArea extends React.Component<IProps, IState>{
             }).then((response:any)=>{
                 return response.json()
             }).then((response:any)=>{
-                this.setState({result:response},()=>this.makeTableBody())
+                this.setState({isShowing: false,
+                    result:response},()=>this.makeTableBody())
             })
         }
     }
+
+    public getCharacterList = () => {
+        fetch('https://msapoggamesapidevops.azurewebsites.net/api/Characters',{
+            method:'GET'
+        }).then((response:any) => {
+            return response.json();
+        }).then((response:any)=>{
+            const output:any[] = []
+            
+            response.forEach((character:any) => {
+                character.game = this.getGameName(character.gameId);
+                output.push(character);
+            })
+            this.setState({characters:output})
+            });
+    }
+    
+    public getGameName = (id: string) => {
+        let game = "";
+        fetch('https://msapoggamesapidevops.azurewebsites.net/api/Games/' + id ,{
+            method:'GET'
+        }).then((response:any) => {
+            return response.json();
+        }).then((response:any)=>{
+             game = response.gameName;
+             return game;
+        });
+    }
+    
 
     public makeTableBody = () =>{
         const toRet: any[] = []
@@ -121,6 +152,14 @@ export default class CharacterArea extends React.Component<IProps, IState>{
                         <th>Game</th>
                     </tr>
                     <tbody className="characterTable">
+                        {this.getCharacterList()}
+                        {this.state.isShowing ? this.state.characters.map((character:any) => (
+                            <tr>
+                                <td><img src={character.charImageUrl} width="50px"/></td>
+                                <td><b>{character.charName}</b></td>
+                                <td>{character.game}</td>
+                            </tr>
+                        )) : null}
                             {this.state.body}
                     </tbody>
                 </table>
@@ -128,4 +167,4 @@ export default class CharacterArea extends React.Component<IProps, IState>{
             </div>
         )
     }
-}
+} 
