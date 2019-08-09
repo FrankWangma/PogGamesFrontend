@@ -9,7 +9,7 @@ interface IState {
     isShowing: boolean,
     result: any,
     body:any,
-    characters: any
+    characters: any,
 }
 
 interface IProps {
@@ -25,8 +25,11 @@ export default class CharacterArea extends React.Component<IProps, IState>{
             input:"",
             isShowing: true,
             result:[],
-            
         }
+    }
+
+    public componentDidMount = () =>{
+        this.getCharacterList()
     }
 
     public search = () => {
@@ -57,23 +60,37 @@ export default class CharacterArea extends React.Component<IProps, IState>{
             const output:any[] = []
             
             response.forEach((character:any) => {
-                character.game = this.getGameName(character.gameId);
+                this.getGameName(character);
                 output.push(character);
             })
             this.setState({characters:output})
             });
     }
     
-    public getGameName = (id: string) => {
-        let game = "";
+    public getGameName = async (character:any) => {
+        const id = character.gameId;
+        const charId = character.apiCharId
         fetch('https://msapoggamesapidevops.azurewebsites.net/api/Games/' + id ,{
             method:'GET'
         }).then((response:any) => {
             return response.json();
         }).then((response:any)=>{
-             game = response.gameName;
-             return game;
+            this.setState(state => {
+                const characters = state.characters.map((item:any) => {
+                    if(item.apiCharId === charId && item.gameId === id) {
+                        item.game = response.gameName;
+                        return item;
+                    } else {
+                        return item;
+                    }
+                })
+                return {
+                    characters
+                }
+            })
+             
         });
+
     }
     
 
@@ -103,8 +120,7 @@ export default class CharacterArea extends React.Component<IProps, IState>{
         });
         if (toRet.length === 0){
             if(this.state.input.trim() === ""){
-                const error = <div><p>Sorry you need to search</p></div>
-                this.setState({body:error})
+                this.setState({isShowing: true});
             }else{
                 const error = <div><p>Sorry no results returned</p></div>
                 this.setState({body:error})
@@ -152,7 +168,6 @@ export default class CharacterArea extends React.Component<IProps, IState>{
                         <th>Game</th>
                     </tr>
                     <tbody className="characterTable">
-                        {this.getCharacterList()}
                         {this.state.isShowing ? this.state.characters.map((character:any) => (
                             <tr>
                                 <td><img src={character.charImageUrl} width="50px"/></td>
