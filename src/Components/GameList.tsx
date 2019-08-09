@@ -37,6 +37,7 @@ export default class GameList extends React.Component<IProps,IState>{
                     <td className="align-middle" onClick={() => this.handleLike(game)}>{game.isFavourite === true?<img src={pogchamp} width="50px"/>:<img src={pogchampgrey} width="50px"/>}</td>
                     <td className="align-middle"><img src={game.coverImageUrl} width="70px"/></td>
                     <td className="align-middle"><b>{game.gameName}</b></td>
+                    <td className="align-middle"><b>{game.gameCompany}</b></td>
                     <td className="align-middle" onClick={() => this.deleteGame(game.gameId)}><Close/></td>                    
                     </tr>)
                 if(game.isFavourite){
@@ -85,6 +86,7 @@ export default class GameList extends React.Component<IProps,IState>{
                         <th>Favourite</th>
                         <th>Image</th>
                         <th>Name</th>
+                        <th>Company</th>
                         <th>Delete</th>
                     </tr>
                     <tbody className="characterTable">
