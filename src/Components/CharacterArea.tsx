@@ -1,4 +1,5 @@
 import { IconButton } from '@material-ui/core';
+import Close from '@material-ui/icons/Close'
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField'
 import Search from '@material-ui/icons/Search'
@@ -10,6 +11,8 @@ interface IState {
     result: any,
     body:any,
     characters: any,
+    showInfo: boolean,
+    currentChar: any
 }
 
 interface IProps {
@@ -22,9 +25,12 @@ export default class CharacterArea extends React.Component<IProps, IState>{
         this.state = {
             body:[],
             characters: [],
+            currentChar: null,
             input:"",
             isShowing: true,
             result:[],
+            showInfo: false,
+            
         }
     }
 
@@ -111,9 +117,9 @@ export default class CharacterArea extends React.Component<IProps, IState>{
             game.character.forEach((character:any) => {
                 toRet.push(
                     <tr>
-                        <td><img src={character.charImageUrl} width="50px"/></td>
-                        <td><b>{character.charName}</b> </td>
-                        <td>{game.gameName}</td>
+                        <td onClick={() => this.showInfo(character)}><img src={character.charImageUrl} width="50px"/></td>
+                        <td onClick={() => this.showInfo(character)}><b>{character.charName}</b> </td>
+                        <td onClick={() => this.showInfo(character)}>{game.gameName}</td>
                     </tr>
                 )
             });
@@ -130,11 +136,47 @@ export default class CharacterArea extends React.Component<IProps, IState>{
         }
     }
 
+    public showInfo = (char:any) => {
+        this.setState({currentChar: char,
+                        showInfo: true});
+    }
 
 
     public render() {
         return (
             <div className="character-area-container">
+                {this.state.showInfo ? <div className="currentGame">
+                                            <div className="inforow">
+                                                <div className="infocolumn left">
+                                                    <tr margin-bottom="10px">
+                                                        <td className="closeInfo" onClick={() => this.setState({showInfo:false})}><Close/></td>   
+                                                    </tr>
+                                                    <tr>
+                                                        <td><img src={this.state.currentChar.charImageUrl} width="70%"/></td>
+                                                    </tr>
+                                                </div>
+                                                <div className="infocolumn right">
+                                                    <table className="infotable">
+                                                        <tr>
+                                                            <td className="infotableheading"><span className="pink-heading">Name :</span></td>
+                                                            <td className="info">{this.state.currentChar.charName}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="infotableheading"><span className="pink-heading">Company :</span></td>
+                                                            <td className="info">{this.state.currentChar.charCountry}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="infotableheading"><span className="pink-heading">Summary :</span></td>
+                                                            <td className="info">{this.state.currentChar.charDescription}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="infotableheading"><span className="pink-heading">Genre :</span></td>
+                                                            <td className="info">{this.state.currentChar.charGender}</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>    
+                                            </div>
+                                     </div> : null}
                 <div className="character-area">
                 <div className="row">
                     <div className="col-2 justify-content-center align-self-center">
@@ -170,9 +212,9 @@ export default class CharacterArea extends React.Component<IProps, IState>{
                     <tbody className="characterTable">
                         {this.state.isShowing ? this.state.characters.map((character:any) => (
                             <tr>
-                                <td><img src={character.charImageUrl} width="50px"/></td>
-                                <td><b>{character.charName}</b></td>
-                                <td>{character.game}</td>
+                                <td onClick={() => this.showInfo(character)}><img src={character.charImageUrl} width="50px"/></td>
+                                <td onClick={() => this.showInfo(character)}><b>{character.charName}</b></td>
+                                <td onClick={() => this.showInfo(character)}>{character.game}</td>
                             </tr>
                         )) : null}
                             {this.state.body}
