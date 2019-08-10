@@ -7,6 +7,53 @@ body {
   background: #332940;
 }
 
+h3.gameInfo {
+  color: #ffb6c1;
+}
+
+/* Create two unequal columns that floats next to each other */
+.infocolumn {
+  float: left;
+  padding: 10px;
+}
+
+.left {
+  width: 25%;
+}
+
+.right {
+  width: 75%;
+}
+
+/* Clear floats after the columns */
+.inforow:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.infotable{
+  padding-top: 5%;
+  margin-top: 4%;
+}
+
+.infotableheading {
+  width: 15%;
+  font-size: 20px;
+  border-bottom: 3px solid #1F1B24;
+}
+
+.closeInfo {
+  color:#BB86FC;
+  cursor: pointer;
+  width: 50px;
+}
+
+.info {
+  color: #ffb6c1;
+  border-bottom: 3px solid #1F1B24;
+}
+
 .header {
   background-color: #1F1B24;
   padding-top: 10px;
@@ -51,7 +98,7 @@ p {
 
 .table td{
   padding: 7px;
-  color: #BB86FC;
+  color: #ffb6c1;
   
 }
 
@@ -67,6 +114,7 @@ p {
 .currentGame {
   display:table-cell;
   vertical-align: middle;
+  margin-bottom: 5%;
   background-color: #383838; 
 }
 

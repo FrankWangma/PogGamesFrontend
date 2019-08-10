@@ -92,7 +92,40 @@ export default class GameList extends React.Component<IProps,IState>{
             <div className="gamerow">
                 <div className="gamecolumn">
                     {this.state.showInfo ? <div className="currentGame">
-                                            {this.state.currentGame.gameName}
+                                            <div className="inforow">
+                                                <div className="infocolumn left">
+                                                    <tr margin-bottom="10px">
+                                                        <td className="closeInfo" onClick={() => this.setState({showInfo:false})}><Close/></td>   
+                                                    </tr>
+                                                    <tr>
+                                                        <td><img src={this.state.currentGame.coverImageUrl} width="70%"/></td>
+                                                    </tr>
+                                                </div>
+                                                <div className="infocolumn right">
+                                                    <table className="infotable">
+                                                        <tr>
+                                                            <td className="infotableheading"><span className="pink-heading">Name :</span></td>
+                                                            <td className="info">{this.state.currentGame.gameName}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="infotableheading"><span className="pink-heading">Company :</span></td>
+                                                            <td className="info">{this.state.currentGame.gameCompany}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="infotableheading"><span className="pink-heading">Summary :</span></td>
+                                                            <td className="info">{this.state.currentGame.gameSummary}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="infotableheading"><span className="pink-heading">Genre :</span></td>
+                                                            <td className="info">{this.state.currentGame.genre}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="infotableheading"><span className="pink-heading">Age Rating :</span></td>
+                                                            <td className="info">{this.state.currentGame.rating}</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>    
+                                            </div>
                                      </div> : null}
                     <div className="game-list">
                     <h1 className="gameList-heading"><span className="pink-heading">Games</span> List</h1>
