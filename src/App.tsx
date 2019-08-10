@@ -2,7 +2,8 @@ import * as React from 'react';
 import CharacterArea from 'src/Components/CharacterArea';
 import Header from 'src/Components/Header';
 import GameList from 'src/Components/GameList';
-import 'src/App.css'
+import Footer from 'src/Components/Footer';
+import 'src/App.css';
 
 interface IState {
     gameList:object,
@@ -64,18 +65,23 @@ class App extends React.Component<{}, IState>{
     return (<div>
       <Header addGame={this.addGame} />
       <div className="buttonArea">
-        <div className="buttonContainer">
+        <div className="container">
           <button className="appButton" onClick={() => this.displayGame()}><b>Game List</b></button>
           <button className="appButton" onClick={() => this.displayChar()}><b>Character</b></button>
         </div>
       </div>
-      <div className="container">
-          {this.state.isGameShowing ? <GameList mount={this.gameList}/> : null}     
-        <div>
-          {this.state.isCharShowing ? <CharacterArea currentGame={this.state.gameName}/> : null}
+        <div className="container">
+          <div>
+            {this.state.isGameShowing ? <GameList mount={this.gameList}/> : null}
+          </div>     
+          <div>
+            {this.state.isCharShowing ? <CharacterArea currentGame={this.state.gameName}/> : null}
+          </div>
         </div>
-      </div>
-    </div>)
+        <Footer />
+     </div>
+    
+    )
   }
 }
 
