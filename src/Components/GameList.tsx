@@ -5,6 +5,8 @@ import * as React from 'react'
 
 interface IState{
     gameList:any,
+    showInfo:boolean
+    currentGame: any
 }
 
 interface IProps{
@@ -15,7 +17,9 @@ export default class GameList extends React.Component<IProps,IState>{
     public constructor(props:any){
         super(props);
         this.state = {
+            currentGame: null,
             gameList: [],
+            showInfo: false
         }
         this.updateList();
     }
@@ -35,9 +39,9 @@ export default class GameList extends React.Component<IProps,IState>{
             response.forEach((game:any) => {
                 const row = (<tr>
                     <td className="align-middle" onClick={() => this.handleLike(game)}>{game.isFavourite === true?<img src={pogchamp} width="50px"/>:<img src={pogchampgrey} width="50px"/>}</td>
-                    <td className="align-middle"><img src={game.coverImageUrl} width="70px"/></td>
-                    <td className="align-middle"><b>{game.gameName}</b></td>
-                    <td className="align-middle"><b>{game.gameCompany}</b></td>
+                    <td className="align-middle" onClick={() => this.showInfo(game)}><img src={game.coverImageUrl} width="70px"/></td>
+                    <td className="align-middle" onClick={() => this.showInfo(game)}><b>{game.gameName}</b></td>
+                    <td className="align-middle" onClick={() => this.showInfo(game)}><b>{game.gameCompany}</b></td>
                     <td className="align-middle" onClick={() => this.deleteGame(game.gameId)}><Close/></td>                    
                     </tr>)
                 if(game.isFavourite){
@@ -75,15 +79,21 @@ export default class GameList extends React.Component<IProps,IState>{
         }).then(()=>{this.updateList()})
     }
 
+    public showInfo = (game:any) => {
+        this.setState({currentGame: game,
+                        showInfo: true});
+    }
+
+
     
 
     public render() {
         return (
             <div className="gamerow">
                 <div className="gamecolumn">
-                    <div className="currentGame">
-                        <h1>Meme</h1>
-                    </div>
+                    {this.state.showInfo ? <div className="currentGame">
+                                            {this.state.currentGame.gameName}
+                                     </div> : null}
                     <div className="game-list">
                     <h1 className="gameList-heading"><span className="pink-heading">Games</span> List</h1>
                     <table className="table">
