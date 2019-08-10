@@ -79,20 +79,27 @@ export default class GameList extends React.Component<IProps,IState>{
 
     public render() {
         return (
-            <div className="game-list">
-            <h1 className="gameList-heading"><span className="pink-heading">Games</span> List</h1>
-            <table className="table">
-                    <tr>
-                        <th>Favourite</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Company</th>
-                        <th>Delete</th>
-                    </tr>
-                    <tbody className="characterTable">
-                            {this.state.gameList}
-                    </tbody>
-                </table>
+            <div className="gamerow">
+                <div className="gamecolumn">
+                    <div className="currentGame">
+                        <h1>Meme</h1>
+                    </div>
+                    <div className="game-list">
+                    <h1 className="gameList-heading"><span className="pink-heading">Games</span> List</h1>
+                    <table className="table">
+                            <tr>
+                                <th>Favourite</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Company</th>
+                                <th>Delete</th>
+                            </tr>
+                            <tbody className="characterTable">
+                                    {this.state.gameList}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         )
     }
