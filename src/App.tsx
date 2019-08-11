@@ -94,7 +94,6 @@ class App extends React.Component<{}, IState>{
           />}
           
         </div>
-
       </div>
         <div className="container">
           <div>
