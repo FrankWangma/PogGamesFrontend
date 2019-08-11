@@ -79,6 +79,8 @@ class App extends React.Component<{}, IState>{
             appId="2356430587914055" 
             fields="name,email,picture"
             callback={responseFacebook}
+            cssClass="my-facebook-button-class"
+            icon="fa-facebook"
           />
         </div>
 

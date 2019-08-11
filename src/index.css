@@ -153,6 +153,7 @@ p {
 .buttonArea {
   background-color: #1F1B24;
   padding-top: 0;
+  padding-bottom: 10px;
   margin-bottom: 20px;
 }
 
@@ -205,5 +206,12 @@ td {
 
 .footer-heading {
   margin-top: 20px;
+}
+
+.my-facebook-button-class {
+  background-color: #3b5998;
+  color: white;
+  margin-left: 10px;
+  border-color: #3b5998;
 }
 
