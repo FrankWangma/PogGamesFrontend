@@ -39,7 +39,7 @@ export default class GameList extends React.Component<IProps,IState>{
             const output:any[] = []
             response.forEach((game:any) => {
                 const row = (<tr>
-                     {this.props.isLoggedIn ? <td className="align-middle" onClick={() => this.handleLike(game)}>{game.isFavourite === true?<img src={pogchamp} width="50px"/>:<img src={pogchampgrey} width="50px"/>}</td> : null}
+                    <td className="align-middle" onClick={() => this.handleLike(game)}>{game.isFavourite === true?<img src={pogchamp} width="50px"/>:<img src={pogchampgrey} width="50px"/>}</td>
                     <td className="align-middle" onClick={() => this.showInfo(game)}><img src={game.coverImageUrl} width="70px"/></td>
                     <td className="align-middle" onClick={() => this.showInfo(game)}><b>{game.gameName}</b></td>
                     <td className="align-middle" onClick={() => this.showInfo(game)}><b>{game.gameCompany}</b></td>
