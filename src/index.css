@@ -80,6 +80,11 @@ th {
   color: #BB86FC;
 }
 
+h5.pink-heading {
+  color: #BB86FC;
+  margin-top: 20px;
+}
+
 .gameList-heading {
   margin-left: 20px;
   margin-top: 10px;
