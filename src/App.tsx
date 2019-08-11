@@ -3,6 +3,7 @@ import CharacterArea from 'src/Components/CharacterArea';
 import Header from 'src/Components/Header';
 import GameList from 'src/Components/GameList';
 import Footer from 'src/Components/Footer';
+import FacebookLogin from 'react-facebook-login';
 import 'src/App.css';
 
 interface IState {
@@ -60,15 +61,27 @@ class App extends React.Component<{}, IState>{
     })
   }
 
-
+  
   public render() {
+
+    const responseFacebook = (response:any) => {
+      console.log(response);
+    }
+  
     return (<div>
+      
       <Header addGame={this.addGame} />
       <div className="buttonArea">
         <div className="container">
           <button className="appButton" onClick={() => this.displayGame()}><b>Game List</b></button>
           <button className="appButton" onClick={() => this.displayChar()}><b>Character</b></button>
+          <FacebookLogin
+            appId="2356430587914055" 
+            fields="name,email,picture"
+            callback={responseFacebook}
+          />
         </div>
+
       </div>
         <div className="container">
           <div>
