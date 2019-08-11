@@ -83,7 +83,7 @@ class App extends React.Component<{}, IState>{
         <div className="container">
           <button className="appButton" onClick={() => this.displayGame()}><b>Game List</b></button>
           <button className="appButton" onClick={() => this.displayChar()}><b>Character</b></button>
-          {this.state.isLoggedIn ? <b>Welcome, {this.state.userName}</b>
+          {this.state.isLoggedIn ? <h3 className="pink-heading">Welcome, {this.state.userName}</h3>
           : 
           <FacebookLogin
             appId="2356430587914055" 
@@ -98,7 +98,7 @@ class App extends React.Component<{}, IState>{
       </div>
         <div className="container">
           <div>
-            {this.state.isGameShowing ? <GameList mount={this.gameList}/> : null}
+            {this.state.isGameShowing ? <GameList mount={this.gameList} isLoggedIn={this.state.isLoggedIn}/> : null}
           </div>     
           <div>
             {this.state.isCharShowing ? <CharacterArea currentGame={this.state.gameName}/> : null}
