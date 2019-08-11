@@ -5,8 +5,9 @@ import * as React from 'react'
 
 interface IState{
     gameList:any,
-    showInfo:boolean
-    currentGame: any
+    showInfo:boolean,
+    currentGame: any,
+    isLoggedIn: boolean,
 }
 
 interface IProps{
@@ -20,9 +21,18 @@ export default class GameList extends React.Component<IProps,IState>{
         this.state = {
             currentGame: null,
             gameList: [],
-            showInfo: false
+            isLoggedIn: false,
+            showInfo: false,
+            
         }
         this.updateList();
+    }
+
+    public componentDidUpdate(prevProps: any) {
+        if (this.props.isLoggedIn !== prevProps.isLoggedIn) {
+            this.setState({isLoggedIn: true});
+            this.updateList();
+        }
     }
 
     public componentDidMount = () =>{
@@ -39,7 +49,7 @@ export default class GameList extends React.Component<IProps,IState>{
             const output:any[] = []
             response.forEach((game:any) => {
                 const row = (<tr>
-                    <td className="align-middle" onClick={() => this.handleLike(game)}>{game.isFavourite === true?<img src={pogchamp} width="50px"/>:<img src={pogchampgrey} width="50px"/>}</td>
+                     {this.state.isLoggedIn ? <td className="align-middle" onClick={() => this.handleLike(game)}>{game.isFavourite === true?<img src={pogchamp} width="50px"/>:<img src={pogchampgrey} width="50px"/>}</td> : null}
                     <td className="align-middle" onClick={() => this.showInfo(game)}><img src={game.coverImageUrl} width="70px"/></td>
                     <td className="align-middle" onClick={() => this.showInfo(game)}><b>{game.gameName}</b></td>
                     <td className="align-middle" onClick={() => this.showInfo(game)}><b>{game.gameCompany}</b></td>
@@ -132,7 +142,7 @@ export default class GameList extends React.Component<IProps,IState>{
                     <h1 className="gameList-heading"><span className="pink-heading">Games</span> List</h1>
                     <table className="table">
                             <tr>
-                                {this.props.isLoggedIn ? <th>Favourite</th> : null} 
+                                {this.state.isLoggedIn ? <th>Favourite</th> : null} 
                                 <th>Image</th>
                                 <th>Name</th>
                                 <th>Company</th>
