@@ -83,7 +83,7 @@ class App extends React.Component<{}, IState>{
         <div className="container">
           <button className="appButton" onClick={() => this.displayGame()}><b>Game List</b></button>
           <button className="appButton" onClick={() => this.displayChar()}><b>Character</b></button>
-          {this.state.isLoggedIn ? <h5 className="pink-heading" margin-top="10px">Welcome, {this.state.userName}</h5>
+          {this.state.isLoggedIn ? <h5 className="pink-heading" margin-top="10px">Welcome, <span className="username">{this.state.userName}</span></h5>
           : 
           <FacebookLogin
             appId="2356430587914055" 

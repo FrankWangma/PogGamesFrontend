@@ -101,6 +101,10 @@ p {
   text-align: center;
 }
 
+.username {
+  color: #ffb6c1;
+}
+
 .table td{
   padding: 7px;
   color: #ffb6c1;
