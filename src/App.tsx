@@ -11,8 +11,10 @@ interface IState {
     gameName: string,
     isCharShowing: boolean,
     isGameShowing: boolean,
+    isLoggedIn: boolean,
     updateGameList:any,
-    
+    userName: string,
+    userId: any
 }
 
 class App extends React.Component<{}, IState>{
@@ -23,8 +25,10 @@ class App extends React.Component<{}, IState>{
       gameName:"",
       isCharShowing: false,
       isGameShowing: true,
+      isLoggedIn: false,
       updateGameList:null,
-      
+      userId:"",
+      userName: ""
     }
   }
 
@@ -65,7 +69,11 @@ class App extends React.Component<{}, IState>{
   public render() {
 
     const responseFacebook = (response:any) => {
-      console.log(response);
+      this.setState({
+        isLoggedIn: true,
+        userId: response.userId,
+        userName: response.name
+      })
     }
   
     return (<div>
@@ -75,13 +83,16 @@ class App extends React.Component<{}, IState>{
         <div className="container">
           <button className="appButton" onClick={() => this.displayGame()}><b>Game List</b></button>
           <button className="appButton" onClick={() => this.displayChar()}><b>Character</b></button>
+          {this.state.isLoggedIn ? <b>Welcome, {this.state.userName}</b>
+          : 
           <FacebookLogin
             appId="2356430587914055" 
             fields="name,email,picture"
             callback={responseFacebook}
             cssClass="my-facebook-button-class"
             icon="fa-facebook"
-          />
+          />}
+          
         </div>
 
       </div>
