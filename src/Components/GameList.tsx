@@ -163,7 +163,8 @@ export default class GameList extends React.Component<IProps,IState>{
                             value = {this.state.input}
                             InputProps={{
                                 endAdornment: <InputAdornment position="end">
-                                    <IconButton onClick={this.addGame}>
+                                    <IconButton onClick={this.addGame} 
+                                    size="small">
                                         <AddCircle/>
                                     </IconButton>
                                 </InputAdornment>,
