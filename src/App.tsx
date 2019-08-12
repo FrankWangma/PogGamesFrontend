@@ -86,7 +86,6 @@ class App extends React.Component<{}, IState>{
     }
   
     return (<div>
-      
       <Header addGame={this.addGame} />
       <div className="buttonArea">
         <div className="container">
