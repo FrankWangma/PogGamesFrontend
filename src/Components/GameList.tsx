@@ -1,6 +1,10 @@
 import Close from '@material-ui/icons/Close'
-import pogchamp from 'src/Images/pogchamp.png'
-import pogchampgrey from 'src/Images/pogchampgrey.png'
+import pogchamp from '../Images/pogchamp.png'
+import pogchampgrey from '../Images/pogchampgrey.png'
+import { IconButton } from '@material-ui/core';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import TextField from '@material-ui/core/TextField'
+import AddCircle from '@material-ui/icons/AddCircle'
 import * as React from 'react'
 
 interface IState{
@@ -8,11 +12,13 @@ interface IState{
     showInfo:boolean,
     currentGame: any,
     isLoggedIn: boolean,
+    input:string
 }
 
 interface IProps{
     mount:any
     isLoggedIn: boolean
+    addGame: any
 }
 
 export default class GameList extends React.Component<IProps,IState>{
@@ -21,6 +27,7 @@ export default class GameList extends React.Component<IProps,IState>{
         this.state = {
             currentGame: null,
             gameList: [],
+            input: "",
             isLoggedIn: false,
             showInfo: false,
             
@@ -65,6 +72,7 @@ export default class GameList extends React.Component<IProps,IState>{
             this.setState({gameList:output})
             });
     }
+    
 
     public deleteGame = (id:any) => {
         fetch("https://msapoggamesapidevops.azurewebsites.net/api/Games/"+id,{
@@ -96,6 +104,9 @@ export default class GameList extends React.Component<IProps,IState>{
                         showInfo: true});
     }
 
+    public addGame = () => {
+        this.props.addGame(this.state.input);
+    }
 
     
 
@@ -141,6 +152,24 @@ export default class GameList extends React.Component<IProps,IState>{
                                      </div> : null}
                     <div className="game-list">
                     <h1 className="gameList-heading"><span className="pink-heading">Games</span> List</h1>
+                    <div className="gameSearchBar">
+                            <TextField
+                            id= "Search-Bar"
+                            className = "SearchBar"
+                            placeholder="Input a game name"
+                            margin="normal"
+                            variant="outlined"
+                            onChange = { (event: any ) => this.setState({input:event.target.value})}
+                            value = {this.state.input}
+                            InputProps={{
+                                endAdornment: <InputAdornment position="end">
+                                    <IconButton onClick={this.addGame}>
+                                        <AddCircle/>
+                                    </IconButton>
+                                </InputAdornment>,
+                            }}
+                            />
+                        </div>
                     <table className="table">
                             <tr>
                                 {this.state.isLoggedIn ? <th>Favourite</th> : null} 

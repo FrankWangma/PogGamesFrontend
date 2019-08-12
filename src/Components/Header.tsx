@@ -1,27 +1,9 @@
-import { IconButton } from '@material-ui/core';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import TextField from '@material-ui/core/TextField'
-import AddCircle from '@material-ui/icons/AddCircle'
 import * as React from 'react';
 
-interface IProps{
-    addGame:any,
-}
 
-interface IState{
-    input:string
-}
-
-export default class Header extends React.Component<IProps,IState> {
+export default class Header extends React.Component {
     public constructor(props:any){
         super(props);
-        this.state = {
-            input:""
-        }
-    }
-
-    public addGame = () =>{            
-        this.props.addGame(this.state.input)
     }
 
     public render() {
@@ -31,24 +13,6 @@ export default class Header extends React.Component<IProps,IState> {
                     <div className="row">
                         <div className="col-2 justify-content-center align-self-center">
                             <h1><span className="pink-heading">PoG</span>Games</h1>
-                        </div>
-                        <div className="gameSearchBar">
-                            <TextField
-                            id= "Search-Bar"
-                            className = "SearchBar"
-                            placeholder="Input a game name"
-                            margin="normal"
-                            variant="outlined"
-                            onChange = { (event: any ) => this.setState({input:event.target.value})}
-                            value = {this.state.input}
-                            InputProps={{
-                                endAdornment: <InputAdornment position="end">
-                                    <IconButton onClick={this.addGame}>
-                                        <AddCircle/>
-                                    </IconButton>
-                                </InputAdornment>,
-                            }}
-                            />
                         </div>
                     </div>
                 </div>

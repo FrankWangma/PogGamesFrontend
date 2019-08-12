@@ -15,7 +15,8 @@ interface IState {
     isLoggedIn: boolean,
     updateGameList:any,
     userName: string,
-    userId: any
+    userId: any,
+    
 }
 
 class App extends React.Component<{}, IState>{
@@ -24,6 +25,7 @@ class App extends React.Component<{}, IState>{
     this.state = {
       gameList:[],
       gameName:"",
+     
       isCharShowing: false,
       isGameShowing: true,
       isLoggedIn: false,
@@ -86,7 +88,8 @@ class App extends React.Component<{}, IState>{
     }
   
     return (<div>
-      <Header addGame={this.addGame} />
+      
+      <Header />
       <div className="buttonArea">
         <div className="container">
           <button className="appButton" onClick={() => this.displayGame()}><b>Game List</b></button>
@@ -105,7 +108,7 @@ class App extends React.Component<{}, IState>{
       </div>
         <div className="container">
           <div>
-            {this.state.isGameShowing ? <GameList mount={this.gameList} isLoggedIn={this.state.isLoggedIn}/> : null}
+            {this.state.isGameShowing ? <GameList mount={this.gameList} isLoggedIn={this.state.isLoggedIn} addGame={this.addGame} /> : null}
           </div>     
           <div>
             {this.state.isCharShowing ? <CharacterArea currentGame={this.state.gameName}/> : null}
