@@ -4,6 +4,7 @@ import Header from 'src/Components/Header';
 import GameList from 'src/Components/GameList';
 import Footer from 'src/Components/Footer';
 import FacebookLogin from 'react-facebook-login';
+import FacebookLogo from 'src/Images/facebookicon.png';
 import 'src/App.css';
 
 interface IState {
@@ -65,6 +66,14 @@ class App extends React.Component<{}, IState>{
     })
   }
 
+  public logout = () => {
+    this.setState({
+      isLoggedIn: false,
+      userId:"",
+      userName:""
+    })
+  }
+
   
   public render() {
 
@@ -83,7 +92,7 @@ class App extends React.Component<{}, IState>{
         <div className="container">
           <button className="appButton" onClick={() => this.displayGame()}><b>Game List</b></button>
           <button className="appButton" onClick={() => this.displayChar()}><b>Character</b></button>
-          {this.state.isLoggedIn ? <h5 className="pink-heading" margin-top="10px">Welcome, <span className="username">{this.state.userName}</span></h5>
+          {this.state.isLoggedIn ? <button className="facebooklogout"onClick={() => this.logout()}><img className= "facebooklogo" src={FacebookLogo} />Logout</button>
           : 
           <FacebookLogin
             appId="2356430587914055" 
@@ -92,7 +101,7 @@ class App extends React.Component<{}, IState>{
             cssClass="my-facebook-button-class"
             icon="fa-facebook"
           />}
-          
+          {this.state.isLoggedIn ? <h5 className="pink-heading" margin-top="10px">Welcome, <span className="username">{this.state.userName}</span></h5> : null }
         </div>
       </div>
         <div className="container">
@@ -103,6 +112,7 @@ class App extends React.Component<{}, IState>{
             {this.state.isCharShowing ? <CharacterArea currentGame={this.state.gameName}/> : null}
           </div>
         </div>
+        <div className="push" />
         <Footer />
      </div>
     

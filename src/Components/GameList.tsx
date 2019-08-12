@@ -1,6 +1,6 @@
 import Close from '@material-ui/icons/Close'
-import pogchamp from '../Images/pogchamp.png'
-import pogchampgrey from '../Images/pogchampgrey.png'
+import pogchamp from 'src/Images/pogchamp.png'
+import pogchampgrey from 'src/Images/pogchampgrey.png'
 import * as React from 'react'
 
 interface IState{
@@ -55,7 +55,7 @@ export default class GameList extends React.Component<IProps,IState>{
                     <td className="align-middle" onClick={() => this.showInfo(game)}><b>{game.gameCompany}</b></td>
                     <td className="align-middle" onClick={() => this.deleteGame(game.gameId)}><Close/></td>                    
                     </tr>)
-                if(game.isFavourite){
+                if(game.isFavourite && this.state.isLoggedIn){
                     output.unshift(row);
                 }else{
                     output.push(row);

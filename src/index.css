@@ -164,6 +164,7 @@ p {
   padding-top: 0;
   padding-bottom: 10px;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .appButton {
@@ -200,7 +201,6 @@ td {
 
 .shareIcons {
   cursor: pointer;
-  margin-top: 20px;
   margin-right: 20px;
   margin-bottom: 50px;
 }
@@ -211,6 +211,7 @@ td {
   left: 0;
   bottom: 0;
   width: 100%;
+  height: 125px;
 }
 
 .footer-heading {
@@ -224,3 +225,19 @@ td {
   border-color: #3b5998;
 }
 
+.facebooklogout {
+  background-color: #3b5998;
+  color: white;
+  margin-left: 10px;
+  border-color: #3b5998;
+}
+
+.push {
+  height: 200px;
+}
+
+.facebooklogo {
+  width: 25px;
+  padding-left: 0;
+  padding-right: 5px;
+}
