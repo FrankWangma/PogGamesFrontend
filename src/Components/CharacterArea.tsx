@@ -162,15 +162,15 @@ export default class CharacterArea extends React.Component<IProps, IState>{
                                                             <td className="info">{this.state.currentChar.charName}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td className="infotableheading"><span className="pink-heading">Company :</span></td>
+                                                            <td className="infotableheading"><span className="pink-heading">Location :</span></td>
                                                             <td className="info">{this.state.currentChar.charCountry}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td className="infotableheading"><span className="pink-heading">Summary :</span></td>
+                                                            <td className="infotableheading"><span className="pink-heading">Description :</span></td>
                                                             <td className="info">{this.state.currentChar.charDescription}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td className="infotableheading"><span className="pink-heading">Genre :</span></td>
+                                                            <td className="infotableheading"><span className="pink-heading">Gender :</span></td>
                                                             <td className="info">{this.state.currentChar.charGender}</td>
                                                         </tr>
                                                     </table>
