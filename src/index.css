@@ -219,6 +219,10 @@ td {
   margin-top: 20px;
 }
 
+.footer-follow {
+  margin-top: 20px;
+  margin-left: 50%;
+}
 .my-facebook-button-class {
   background-color: #3b5998;
   color: white;
@@ -241,4 +245,13 @@ td {
   width: 25px;
   padding-left: 0;
   padding-right: 5px;
+}
+
+a.profileicons{
+  padding-right: 20px;
+  color: #ffb6c1;
+}
+
+.followiconcontainer {
+  margin-left: 45%;
 }
