@@ -180,7 +180,7 @@ export default class CharacterArea extends React.Component<IProps, IState>{
                 <div className="character-area">
                 <div className="row">
                     <div className="col-2 justify-content-center align-self-center">
-                        <h1><span className="pink-heading">Characters</span></h1>
+                        <h1><span className="pink-heading">Characters</span> List</h1>
                     </div>
                     <div className="col-10">
                         
