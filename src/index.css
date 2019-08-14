@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans&display=swap');
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Alegreya Sans', sans-serif;
   background: #332940;
 }
 
@@ -170,7 +170,7 @@ p {
 
 .appButton {
   margin-right: 20px;
-  width: 100px;
+  width: 150px;
   border-color: #BB86FC;
   background-color: #1F1B24;
   color: #BB86FC;
@@ -182,7 +182,7 @@ p {
 }
 
 td {
-  font-size: 15px;
+  font-size: 20px;
 }
 
 .gamerow {

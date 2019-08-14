@@ -32,7 +32,7 @@ export default class Footer extends React.Component<{}> {
             <div className="footer">
                 <div className="container">
                <div className="row" >
-                <h1 className="footer-heading"><span className="pink-heading">Share </span> on Social Media</h1>
+                <h1 className="footer-heading"><span className="pink-heading">Share </span> on <span className="pink-heading">Social Media</span></h1>
                 <div className="col">
                 <h1 className="footer-follow"><span className="pink-heading">Follow Me </span>on: </h1>
                 </div>
