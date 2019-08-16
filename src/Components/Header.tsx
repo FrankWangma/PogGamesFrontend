@@ -1,4 +1,5 @@
 import * as React from 'react';
+import logo from 'src/Images/poGGamesicon.png';
 
 
 export default class Header extends React.Component {
@@ -12,7 +13,7 @@ export default class Header extends React.Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-2 justify-content-center align-self-center">
-                            <h1><span className="pink-heading">PoG</span>Games</h1>
+                            <img src={logo} width="150px"/>
                         </div>
                     </div>
                 </div>

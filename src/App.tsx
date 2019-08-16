@@ -92,8 +92,8 @@ class App extends React.Component<{}, IState>{
       <Header />
       <div className="buttonArea">
         <div className="container">
-          <button className="appButton" onClick={() => this.displayGame()}><b>Game List</b></button>
-          <button className="appButton" onClick={() => this.displayChar()}><b>Character List</b></button>
+          <button className="appButton" onClick={() => this.displayGame()}><b>Games List</b></button>
+          <button className="appButton" onClick={() => this.displayChar()}><b>Characters List</b></button>
           {this.state.isLoggedIn ? <button className="facebooklogout"onClick={() => this.logout()}><img className= "facebooklogo" src={FacebookLogo} />Logout</button>
           : 
           <FacebookLogin
