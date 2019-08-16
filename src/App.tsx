@@ -90,6 +90,7 @@ class App extends React.Component<{}, IState>{
     return (<div>
       
       <Header />
+      <button onClick={() => this.setState({isLoggedIn: true})}>Test</button>
       <div className="buttonArea">
         <div className="container">
           <button className="appButton" onClick={() => this.displayGame()}><b>Games List</b></button>

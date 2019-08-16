@@ -37,7 +37,7 @@ export default class GameList extends React.Component<IProps,IState>{
 
     public componentDidUpdate(prevProps: any) {
         if (this.props.isLoggedIn !== prevProps.isLoggedIn) {
-            const loggedIn = !this.state.isLoggedIn
+            const loggedIn = this.props.isLoggedIn
             this.setState({isLoggedIn: loggedIn});
             this.updateList();
         }
